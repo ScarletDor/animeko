@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import kotlinx.coroutines.delay
 
 /**
  * Modifier that ensures a default focusable element exists on TV platforms.
@@ -50,6 +51,7 @@ fun Modifier.tvDefaultFocus(): Modifier = composed {
         val focusRequester = remember { FocusRequester() }
         
         LaunchedEffect(Unit) {
+            delay(FOCUS_REQ_DELAY_MILLIS)
             focusRequester.requestFocus()
         }
         
