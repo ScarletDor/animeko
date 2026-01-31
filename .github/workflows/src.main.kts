@@ -904,7 +904,7 @@ workflow(
                 tasks = arrayOf("updateReleaseVersionNameFromGit", "\"--no-configuration-cache\""),
                 env = mapOf(
                     "GITHUB_TOKEN" to expr { secrets.GITHUB_TOKEN },
-                    "GITHUB_REPOSITORY" to expr { secrets.GITHUB_REPOSITORY },
+                    "GITHUB_REPOSITORY" to expr { github.repository },
                     "CI_RELEASE_ID" to expr { createRelease.outputs.id },
                     "CI_TAG" to expr { gitTag.tagExpr },
                 ),
@@ -1718,7 +1718,7 @@ class WithMatrix(
     ) {
         private val ciHelperSecrets: Map<String, String> = mapOf(
             "GITHUB_TOKEN" to expr { secrets.GITHUB_TOKEN },
-            "GITHUB_REPOSITORY" to expr { secrets.GITHUB_REPOSITORY },
+            "GITHUB_REPOSITORY" to expr { github.repository },
             "CI_RELEASE_ID" to expr { releaseIdExpr },
             "CI_TAG" to expr { gitTag.tagExpr },
             "UPLOAD_TO_S3" to "true",
